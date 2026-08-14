@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Dashboard from './components/Dashboard';
 import TransactionsNetwork from './components/TransactionsNetwork';
 import GenerateSAR from './components/GenerateSAR';
+import AuditLogs from './components/AuditLogs';
 
 const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: '📊' },
@@ -86,6 +87,24 @@ export default function App() {
             </button>
           </div>
           <GenerateSAR role={role} />
+        </div>
+      );
+    }
+
+    if (activeView === 'audit') {
+      return (
+        <div className="h-full flex flex-col">
+          <div className="mb-6 flex justify-between items-end">
+            <div>
+              <h1 className="text-2xl font-semibold text-white tracking-tight">
+                Audit Logs
+              </h1>
+              <p className="text-dark-text-muted mt-1 text-sm">
+                Comprehensive record of system and user activities.
+              </p>
+            </div>
+          </div>
+          <AuditLogs />
         </div>
       );
     }
