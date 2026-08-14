@@ -1,5 +1,8 @@
 import { useState } from 'react';
 
+import Dashboard from './components/Dashboard';
+import TransactionsNetwork from './components/TransactionsNetwork';
+
 const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: '📊' },
   { id: 'transactions', label: 'Transactions', icon: '💳' },
@@ -18,8 +21,56 @@ export default function App() {
 
   // Conditional rendering based on view and role
   const renderContent = () => {
+    if (activeView === 'dashboard') {
+      return (
+        <div className="h-full flex flex-col">
+          <div className="mb-6 flex justify-between items-end">
+            <div>
+              <h1 className="text-2xl font-semibold text-white tracking-tight">
+                Dashboard Overview
+              </h1>
+              <p className="text-dark-text-muted mt-1 text-sm">
+                System status and key metrics for {role.toLowerCase()}s.
+              </p>
+            </div>
+            <button className="bg-primary hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors shadow-sm shadow-primary/20">
+              Generate Report
+            </button>
+          </div>
+          <Dashboard />
+        </div>
+      );
+    }
+
+    if (activeView === 'transactions' || activeView === 'network') {
+      return (
+        <div className="h-full flex flex-col">
+          <div className="mb-6 flex justify-between items-end">
+            <div>
+              <h1 className="text-2xl font-semibold text-white tracking-tight">
+                Transactions & Network
+              </h1>
+              <p className="text-dark-text-muted mt-1 text-sm">
+                Consolidated view for transactions and community graph analysis.
+              </p>
+            </div>
+            <div className="flex gap-3">
+              <button className="bg-dark-surface border border-dark-border hover:bg-dark-border/50 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                Export Data
+              </button>
+              <button className="bg-primary hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors shadow-sm shadow-primary/20">
+                New Query
+              </button>
+            </div>
+          </div>
+          <TransactionsNetwork />
+        </div>
+      );
+    }
+
     return (
       <div className="h-full flex flex-col">
+
         <div className="mb-6 flex justify-between items-end">
           <div>
             <h1 className="text-2xl font-semibold text-white tracking-tight">
