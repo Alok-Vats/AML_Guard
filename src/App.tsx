@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import Dashboard from './components/Dashboard';
 import TransactionsNetwork from './components/TransactionsNetwork';
+import GenerateSAR from './components/GenerateSAR';
 
 const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: '📊' },
@@ -64,6 +65,27 @@ export default function App() {
             </div>
           </div>
           <TransactionsNetwork />
+        </div>
+      );
+    }
+
+    if (activeView === 'sar') {
+      return (
+        <div className="h-full flex flex-col">
+          <div className="mb-6 flex justify-between items-end">
+            <div>
+              <h1 className="text-2xl font-semibold text-white tracking-tight">
+                SAR Reports
+              </h1>
+              <p className="text-dark-text-muted mt-1 text-sm">
+                Generate and review Suspicious Activity Reports.
+              </p>
+            </div>
+            <button className="bg-dark-surface border border-dark-border hover:bg-dark-border/50 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+              View Past Reports
+            </button>
+          </div>
+          <GenerateSAR role={role} />
         </div>
       );
     }
